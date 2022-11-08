@@ -4,9 +4,12 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "test",
-    "start": "node server.js"
+    "start": "node server.js",
+    "dev": "nodemon server.js"
   },
   "author": "Caleb Owatah",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "nodemon": "^2.0.20"
+  }
 }

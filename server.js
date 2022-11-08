@@ -1,27 +1,28 @@
+const path = require('path');
+const fs = require('fs');
 const http = require('http');
 
-const server = http.createServer(function(request, res) {
-    res.writeHead(200, {'Content-Type': 'text/html'});
+const server = http.createServer((req, res) => {
+   if(req.url === '/') {
+    let filepath = path.join(__dirname, 'index.html');
+    fs.readFile(filepath, 'utf8', (err, data) => {
+        res.writeHead(200, {'Content-Type' : 'text/html'})
+        res.end(data)
+    })
+   }
+   if(req.url === '/about.html') {
+    let filepath = path.join(__dirname, 'about.html');
+    fs.readFile(filepath, 'utf8', (err, data) => {
+        res.writeHead(200, {'Content-Type' : 'text/html'})
+        res.end(data)
+    })
+   }
 
-//    res.end(`
-//    {
-//     'name': 'Caleb',
-//     'College': 'FUTA',
-//     'Occupation': 'Software engineer'
-//  }
-//    `);
-
-res.end(`
-    <html>
-        <body>
-            <h1>Welcome</h1>
-            <p>Text here</p>
-        </body>
-    </html>
-`);
 });
 
-// Create a port
-server.listen(400, '127.0.0.1');
+const port =5000
 
-console.log('You created a server');
+server.listen(port, () => {
+    console.log(`server is running on ${port} `)
+});
+
